@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <!-- v-text -->
+        <h2 v-text="message"></h2>
+        <h2> {{ message + " ! " }} </h2>
+        <!-- v-html -->
+        <h2 v-html="content"></h2>
+        <!-- v-on -->
+        <input type="button" value="使用了v-on的按钮" v-on:click="doIt"></input>
+        <input type="button" value="简写事件" @click="doIt"></input>
+        <input type="button" value="双击事件" @dblclick="doIt"></input>
+        <h2 @click="changefood">{{ food }}</h2>
+    </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    var app=new Vue({
+        el: "#app",
+        data:{
+            message:"im v-test",
+            content: "<a href='#'>im v-html</a>",
+            food:"西兰花炒鸡蛋"
+        },
+        methods:{
+            doIt:function(){
+                alert("im v-on");
+            },
+            changefood:function(){
+                this.food+="好好吃!"
+            }
+        },
+    })
+</script>
+</html>
