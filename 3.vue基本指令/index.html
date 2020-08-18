@@ -4,8 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+<style>
+    .active{
+        display: none;
+    }
+
+</style>
+
 </head>
+
 <body>
+
     <div id="app">
         <!-- v-text -->
         <h2 v-text="message"></h2>
@@ -17,6 +26,17 @@
         <input type="button" value="简写事件" @click="doIt"></input>
         <input type="button" value="双击事件" @dblclick="doIt"></input>
         <h2 @click="changefood">{{ food }}</h2>
+        <!-- v-show -->
+        <img src="https://cdn.jsdelivr.net/gh/fushaolei/img/20200524104925.jpg" v-show="isShow">
+        <button @click="showimg">显示/隐藏 图片</button>
+        <!-- v-if -->
+        <p v-if="isp" >im v-if you know</p>
+        <button @click="showp">显示/隐藏 段落</button>
+        <!-- v-bind -->
+        <img v-bind:src="imgSrc" :class="{active:isActive}">
+        <button @click="changeImgSrc">改变图片src</button>
+        <button @click="changeImgClass">改变图片属性</button>
+        
     </div>
 </body>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
@@ -26,7 +46,11 @@
         data:{
             message:"im v-test",
             content: "<a href='#'>im v-html</a>",
-            food:"西兰花炒鸡蛋"
+            food:"西兰花炒鸡蛋",
+            isShow: false,
+            isp: true,
+            imgSrc:"https://cdn.jsdelivr.net/gh/fushaolei/cdn-white@1.0/cover/03.jpg",
+            isActive: true
         },
         methods:{
             doIt:function(){
@@ -34,6 +58,18 @@
             },
             changefood:function(){
                 this.food+="好好吃!"
+            },
+            showimg:function(){
+                this.isShow=!this.isShow;
+            },
+            showp:function(){
+                this.isp=!this.isp;
+            },
+            changeImgSrc:function(){
+                this.imgSrc="https://cdn.jsdelivr.net/gh/fushaolei/cdn-white@1.0/cover/05.jpg";
+            },
+            changeImgClass:function(){
+                this.isActive=!this.isActive;
             }
         },
     })

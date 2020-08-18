@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        img{
+            max-width: 800px;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <img :src="imgArr[index]">
+        <button @click="pre" v-show="index>0">上一张</button>
+        <button @click="next" v-show="imgArr.length-1>index">下一张</button>
+    </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    var app=new Vue({
+        el:"#app",
+        data:{
+            imgArr:["https://cdn.jsdelivr.net/gh/fushaolei/cdn-white@1.0/cover/03.jpg",
+            "https://cdn.jsdelivr.net/gh/fushaolei/cdn-white@1.0/cover/05.jpg",
+            "https://cdn.jsdelivr.net/gh/fushaolei/cdn-white@1.0/cover/06.jpg",
+            "https://cdn.jsdelivr.net/gh/fushaolei/cdn-white@1.0/cover/08.jpg"],
+            index:0,
+            preshow:true,
+            nextshow:true,
+        },
+        methods:{
+            pre:function(){
+                --this.index;
+            },
+            next:function(){
+                ++this.index;
+            }
+        }
+
+    })
+</script>
+</html>
