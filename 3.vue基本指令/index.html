@@ -36,7 +36,30 @@
         <img v-bind:src="imgSrc" :class="{active:isActive}">
         <button @click="changeImgSrc">改变图片src</button>
         <button @click="changeImgClass">改变图片属性</button>
-        
+        <!-- v-for -->
+        <h2>无索引的</h2>
+        <ul>
+            <li v-for="item in simpleArr">{{ item }}</li>
+        </ul>
+        <h2>有索引的</h2>
+        <ul>
+            <li v-for="(item,index) in simpleArr"> {{ index }} {{ item }}</li>
+        </ul>
+        <h2>对象数组</h2>
+        <ul>
+            <li>objArr数组的长度是{{ objArr.length }}</li>
+            <li v-for="item in objArr">{{ item.name }} ==的配偶是== {{ item.wife }}</li>
+        </ul>
+        <button @click="add">添加数据</button>
+        <button @click="remove">移除数据</button>
+        <!-- v-on补充 -->
+        <button @click="doItAgain(666,'老铁')">doItAgain</button>
+        <input type="text" @keyup.enter="sayHi"></input>
+        <!-- v-model -->
+        <h2>v-model</h2>
+        <input type="text" v-model="msg" @keyup.enter="getM"></input>
+        {{ msg }}
+        <button @click="setM">change</button>
     </div>
 </body>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
@@ -50,7 +73,14 @@
             isShow: false,
             isp: true,
             imgSrc:"https://cdn.jsdelivr.net/gh/fushaolei/cdn-white@1.0/cover/03.jpg",
-            isActive: true
+            isActive: true,
+            simpleArr:["任我行","林平之","苏星河","巫行云"],
+            objArr:[
+                {name:"郭靖",wife:"黄蓉"},
+                {name:"杨过",wife:"小龙女"},
+                {name:"陈玄凤",wife:"梅超风"}
+            ],
+            msg:"专门写bug"
         },
         methods:{
             doIt:function(){
@@ -70,6 +100,25 @@
             },
             changeImgClass:function(){
                 this.isActive=!this.isActive;
+            },
+            add:function(){ 
+                this.objArr.push({name:"天",wife:"地"});
+            },
+            remove:function(){
+                this.objArr.shift();
+            },
+            doItAgain:function(p1,p2){
+                console.log("doItAgain");
+                console.log(p2+"双击"+p1);
+            },
+            sayHi:function(){
+                alert("恰了没");
+            },
+            getM:function(){
+                alert(this.msg);
+            },
+            setM:function(){
+                this.msg="写的不止有bug";
             }
         },
     })
